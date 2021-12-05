@@ -1,0 +1,164 @@
+/*
+this is a program for euro 2020 football game.
+on the first step we have startup menu, next we have login page.
+in this program we have 2 users [username : admin, password : admin], [username : user, password : user].
+admin section is not completed but the goal for admin is set matches and status.
+user section can see matches and predict (this part not completed).
+*/
+
+//header files
+#include <stdio.h>
+#include <string.h>
+
+//colors code for having colorfull menu
+#define RED   "\x1B[31m"
+#define GRN   "\x1B[32m"
+#define YEL   "\x1B[33m"
+#define BLU   "\x1B[34m"
+#define MAG   "\x1B[35m"
+#define CYN   "\x1B[36m"
+#define WHT   "\x1B[37m"
+#define RESET "\x1B[0m"
+
+
+// login menu
+void login() {
+
+    // user variables
+    char username[15];
+    char password[30];
+    int counter = 0;
+
+    // match related variable
+    char matchLevel[10] = "final";
+    int matchStatus = 1;
+    char host[15] = "england";
+    char guest[15] = "italy";
+    char matchTime[50] = "11th july 2021";
+    int hostGoal = 2;
+    int guestGoal = 3;
+
+    int choice;
+
+    // in this login loop if user try more than 3 time program will terminate
+    while (counter != 4)
+    {
+    
+    puts(MAG "*************************");
+    puts(MAG "\tLogin Page");
+    puts(WHT "please enter your username : ");
+    scanf("%s",username);
+    puts("please enter your password : ");
+    scanf("%s",password);
+
+    //check the username and password
+
+    if (strcmp(username,"admin")==0 && strcmp(password,"admin")==0)
+    {
+        puts(GRN "\nWelcome admin\n");
+    
+        break;
+    } else if (strcmp(username,"user")==0 && strcmp(password,"user")==0)
+    {
+
+        int userStatus = 1;
+
+        while (userStatus)
+        {
+            
+        printf("\n%sWelcome dear %s.\n\n",GRN,username);
+        puts(BLU "1> show matches");
+        puts(BLU "2> exit\n");
+        puts(YEL "please enter your choice :");
+        scanf("%d",&choice);
+
+        switch (choice)
+        {
+        case 1:
+            if (matchStatus == 1)
+            {
+                puts(YEL "---------------------------\n");
+                printf("%s\t%s\n     %s%s\n%s%s : %d - %d : %s\n\n",YEL,matchLevel,MAG,matchTime,WHT,host,hostGoal,guestGoal,guest);
+                puts(YEL "\n---------------------------\n");
+            } else if (matchStatus == 0)
+            {
+                puts(YEL "\n---------------------------\n");
+                puts(WHT "match will start soon");
+                puts("\tmatches : ");
+                printf("%s\t%s\n     %s%s\n%s%s : * - * : %s\n",YEL,matchLevel,MAG,matchTime,WHT,host,guest);
+                puts(YEL "\n---------------------------\n");
+            }
+             else {
+                puts(WHT "no match found");
+            }
+            
+            break;
+        case 2:
+            puts(WHT "Good bye! hope to see you soon\n");
+            counter =4;
+            break;
+        default:
+            puts(RED "invalid input");
+            break;
+        }
+        counter =4;
+        break;  
+     }
+
+    } else if (counter == 3)
+    {
+        puts(RED"you try more than 3 times, please try again later."RESET);
+        counter++;
+    } else {
+        printf("%s%s, you entered invalid username and password, %stry again.\n",RED,username,YEL);
+        counter++;
+    }
+    puts(MAG "*************************\n");
+}
+}
+
+// welcome menu
+void showWelcomeMenu() {
+int status = 1;
+
+while (status)
+{
+
+int choice = 0;
+
+puts(YEL "*************************");
+puts(MAG "\tEuro 2020");
+puts(CYN "1> login");
+puts("2> about me");
+puts("3> exit");
+puts(YEL "\n please select your choice by entering a number : " RESET);
+scanf("%d",&choice);
+
+//switch case for doing action based on user input choice
+switch (choice)
+{
+case 1 :
+    login();
+    status = 0;
+    break;
+case 2 : 
+    puts(GRN "this program show the match reult of euro 2020 and also \nhave multiple option related to matches\nlet's enjoy the tournament\n");
+    continue;
+case 3 :
+    puts("Good bye! hope to see you soon\n");
+    status = 0;
+    break;    
+default:
+    puts(RED "Invalid input please try again\n");
+    break;
+}
+
+}
+puts(YEL "*************************");
+}
+
+//main function
+int main() {
+    showWelcomeMenu();
+    return 0;
+}

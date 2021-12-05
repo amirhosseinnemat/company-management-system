@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    url: jdbc:mysql://localhost/company_management_system_database
+    password: Amir1995
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database: mysql
+  mvc:
+    servlet:
+      path: /company_management_system
+    view:
+      suffix: .html
+      prefix: src/main/resources/templates
+  mail:
+    host: smtp.mailtrap.io
+    port: 2525
+    username: 4ab2f1637400b5
+    password: 6e7e6d7a609ad2
+
